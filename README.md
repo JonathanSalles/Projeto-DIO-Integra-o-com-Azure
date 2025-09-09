@@ -1,26 +1,25 @@
 # Projeto-DIO-Integra-o-com-Azure
-# [cite_start]Desafio de Projeto: Integrando Dados com MySQL Azure e Transformando com Power BI [cite: 1, 2]
 
-[cite_start]Este projeto descreve o processo de integração de dados de um banco de dados MySQL hospedado no Azure com o Power BI, com foco na transformação e preparação dos dados para análise. [cite: 2]
+# [cite_start]Desafio de Projeto: Integrando Dados com MySQL Azure e Transformando com Power BI [cite: 2]
+
+Este documento descreve as etapas para a execução de um projeto de integração de dados, que envolve a criação de uma instância MySQL no Azure, a conexão com o Power BI e a subsequente transformação dos dados.
 
 ---
 
 ## [cite_start]Ementa - Etapas do Desafio [cite: 3]
 
-1.  **Criação e Configuração no Azure:**
-    * [cite_start]Criar uma instância do MySQL no Azure. [cite: 5]
-    * [cite_start]Explorar o recurso da instância do MySQL. [cite: 6]
-    * [cite_start]Conectar-se ao Banco de Dados via Cloud Shell. [cite: 7]
-    * [cite_start]Criar regras de firewall no Azure para permitir acesso externo. [cite: 8]
+1.  **Infraestrutura na Azure**
+    * [cite_start]Criar uma instância do MySQL na Azure[cite: 5, 12].
+    * [cite_start]Configurar regras no Firewall da Azure para permitir o acesso ao banco de dados[cite: 8].
+    * [cite_start]Conectar-se ao banco de dados via Cloud Shell e MySQL Workbench[cite: 7, 9].
 
-2.  **Conexão e Carga de Dados:**
-    * [cite_start]Conectar ao MySQL no Azure utilizando o Workbench. [cite: 9]
-    * [cite_start]Criar o banco de dados a partir da base disponível no GitHub. [cite: 13]
-    * [cite_start]Integrar o Power BI com o MySQL no Azure para importar os dados. [cite: 10, 14]
+2.  **Carga e Integração de Dados**
+    * [cite_start]Criar o banco de dados utilizando o script disponível no GitHub[cite: 13].
+    * [cite_start]Realizar a integração do Power BI com a instância MySQL na Azure[cite: 10, 14].
 
-3.  **Transformação de Dados no Power BI:**
-    * [cite_start]Analisar a base de dados para identificar problemas e oportunidades de transformação. [cite: 15]
-    * [cite_start]Aplicar uma série de transformações para limpar, modelar e enriquecer os dados. [cite: 16]
+3.  **Transformação de Dados no Power BI**
+    * [cite_start]Analisar a base de dados para identificar a necessidade de transformações[cite: 15].
+    * Aplicar as diretrizes de transformação para preparar os dados para análise.
 
 ---
 
@@ -28,38 +27,25 @@
 
 ### Análise e Limpeza Inicial
 
-- [ ] [cite_start]**Verificar Cabeçalhos e Tipos de Dados:** Garanta que todas as colunas tenham nomes claros e que os tipos de dados (texto, número, data) estejam corretos. [cite: 17]
-- [ ] [cite_start]**Modificar Valores Monetários:** Altere os tipos de dados de colunas monetárias para um formato numérico preciso, como `double`. [cite: 18]
-- [ ] **Tratamento de Nulos:**
-    - [cite_start]Verifique a existência de valores nulos e decida sobre a melhor abordagem (remoção ou preenchimento). [cite: 19]
-    - [cite_start]Para a coluna `Super_ssn` na tabela `employees`, investigue os valores nulos, pois eles podem indicar os funcionários que são gerentes. [cite: 20]
-    - [cite_start]Verifique se há algum departamento sem gerente e, caso exista, preencha a informação. [cite: 21, 22]
-- [ ] [cite_start]**Verificar Horas do Projeto:** Analise a coluna de horas dos projetos para garantir a consistência dos dados. [cite: 23]
-- [ ] [cite_start]**Separar Colunas Complexas:** Se houver colunas com informações compostas, divida-as em colunas separadas para facilitar a análise. [cite: 24]
+* [cite_start]**Verificar Cabeçalhos e Tipos de Dados:** Realize uma inspeção completa nos cabeçalhos e nos tipos de dados de cada coluna[cite: 17].
+* [cite_start]**Modificar Tipos Monetários:** Altere os valores monetários para o tipo `double preciso` para garantir a exatidão nos cálculos[cite: 18].
+* [cite_start]**Analisar e Tratar Nulos:** Verifique a existência de valores nulos e avalie a necessidade de removê-los[cite: 19].
+    * [cite_start]Funcionários com valores nulos na coluna `Super_ssn` podem ser gerentes[cite: 20]. [cite_start]Verifique se existem colaboradores sem um gerente atribuído[cite: 20].
+    * [cite_start]Identifique se há departamentos sem gerentes[cite: 21]. [cite_start]Caso encontre, preencha os dados ausentes[cite: 22].
+* [cite_start]**Verificar Horas de Projeto:** Analise a consistência dos dados referentes ao número de horas dos projetos[cite: 23].
+* [cite_start]**Separar Colunas Complexas:** Divida as colunas que contêm múltiplas informações em colunas distintas[cite: 24].
 
-### Estruturação e Enriquecimento de Dados
+### Modelagem e Enriquecimento de Dados
 
-- [ ] **Mesclar Consultas (Employee e Departament):**
-    - [cite_start]Combine as tabelas `employee` e `departament` para associar cada colaborador ao seu respectivo departamento. [cite: 25]
-    - [cite_start]A mescla deve ter a tabela `employee` como base. [cite: 26]
+* [cite_start]**Mesclar Consultas (Employee e Departament):** Combine as consultas `employee` e `departament` para criar uma tabela de funcionários que inclua o nome de seus respectivos departamentos[cite: 25]. [cite_start]A mesclagem deve ter a tabela `employee` como base[cite: 26].
+* [cite_start]**Unificar Nomes dos Colaboradores:** Mescle as colunas de Nome e Sobrenome para formar uma única coluna com os nomes completos dos colaboradores[cite: 31].
+* [cite_start]**Associar Gerentes a Colaboradores:** Realize a junção dos dados para exibir os nomes dos gerentes ao lado de seus respectivos colaboradores[cite: 28]. [cite_start]Este processo pode ser feito tanto com uma consulta SQL quanto pela mescla de tabelas no Power BI[cite: 29].
+* [cite_start]**Criar Identificador Único de Departamento:** Mescle os nomes dos departamentos com suas localizações[cite: 32]. [cite_start]Essa ação cria uma combinação única que auxiliará na futura criação de um modelo estrela[cite: 32, 33].
 
-- [ ] **Mesclar Nomes de Colaboradores:**
-    - [cite_start]Combine as colunas de nome e sobrenome (`Fname` e `Lname`) para criar uma única coluna com o nome completo do colaborador. [cite: 31]
-
-- [ ] **Associar Colaboradores e Gerentes:**
-    - [cite_start]Realize uma junção (via mescla de tabelas no Power BI ou com uma consulta SQL) para exibir o nome do gerente ao lado do nome de cada colaborador. [cite: 28, 29]
-
-- [ ] **Criar Chave Única de Departamento-Local:**
-    - [cite_start]Mescle as colunas de nome do departamento e localização para criar um identificador único para cada combinação. [cite: 32]
-    - [cite_start]> **Nota:** Esta etapa é fundamental para a futura criação de um modelo em esquema estrela. [cite: 33]
+> **Observação sobre Mesclar vs. Atribuir**
+> [cite_start]A operação de **mesclar** foi utilizada porque o objetivo era enriquecer uma tabela com informações (colunas) de outra[cite: 35]. [cite_start]As tabelas possuem estruturas e propósitos diferentes[cite: 35]. [cite_start]A operação de **atribuir** (acrescentar) não seria adequada, pois ela empilha os dados (linhas) de uma tabela embaixo da outra[cite: 35].
 
 ### Agrupamento e Finalização
 
-- [ ] [cite_start]**Agrupar Colaboradores por Gerente:** Agrupe os dados para obter a contagem de quantos colaboradores estão sob a responsabilidade de cada gerente. [cite: 36]
-- [ ] [cite_start]**Otimização do Modelo:** Elimine todas as colunas que não serão utilizadas nos relatórios finais para melhorar a performance e a usabilidade do modelo. [cite: 27, 37]
-
-### Justificativa de Uso: Mesclar vs. Atribuir
-
-> **Por que usar "Mesclar" e não "Atribuir"?**
->
-> Neste cenário, a operação correta é **Mesclar** (Merge). As tabelas `employee` e `departament` possuem propósitos e estruturas diferentes. O objetivo é enriquecer a tabela de colaboradores adicionando informações (colunas) da tabela de departamentos. [cite_start]A operação **Atribuir** (Append), por outro lado, é utilizada para empilhar tabelas que possuem a mesma estrutura, adicionando novas linhas de dados. [cite: 35]
+* [cite_start]**Agrupar Dados por Gerente:** Agrupe os dados para quantificar quantos colaboradores existem por gerente[cite: 36].
+* [cite_start]**Eliminar Colunas Desnecessárias:** Remova as colunas que não serão utilizadas no relatório final de cada uma das tabelas[cite: 27, 37].

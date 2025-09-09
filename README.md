@@ -1,51 +1,99 @@
 # Projeto-DIO-Integra-o-com-Azure
 
-# [cite_start]Desafio de Projeto: Integrando Dados com MySQL Azure e Transformando com Power BI [cite: 2]
+Desafio de Projeto: Integrando Dados com MySQL Azure e Transformando com Power BI
+Este documento detalha as etapas e diretrizes para um projeto de Business Intelligence, desde a criação de uma infraestrutura de dados na nuvem com Azure MySQL até a transformação e modelagem dos dados utilizando o Power BI.
 
-Este documento descreve as etapas para a execução de um projeto de integração de dados, que envolve a criação de uma instância MySQL no Azure, a conexão com o Power BI e a subsequente transformação dos dados.
 
----
+Ementa do Desafio
+O projeto é dividido em três fases principais:
 
-## [cite_start]Ementa - Etapas do Desafio [cite: 3]
+Configuração da Infraestrutura no Azure
 
-1.  **Infraestrutura na Azure**
-    * [cite_start]Criar uma instância do MySQL na Azure[cite: 5, 12].
-    * [cite_start]Configurar regras no Firewall da Azure para permitir o acesso ao banco de dados[cite: 8].
-    * [cite_start]Conectar-se ao banco de dados via Cloud Shell e MySQL Workbench[cite: 7, 9].
+Criação e exploração da instância do Banco de Dados MySQL.
 
-2.  **Carga e Integração de Dados**
-    * [cite_start]Criar o banco de dados utilizando o script disponível no GitHub[cite: 13].
-    * [cite_start]Realizar a integração do Power BI com a instância MySQL na Azure[cite: 10, 14].
+Configuração de conectividade via Cloud Shell e regras de Firewall.
 
-3.  **Transformação de Dados no Power BI**
-    * [cite_start]Analisar a base de dados para identificar a necessidade de transformações[cite: 15].
-    * Aplicar as diretrizes de transformação para preparar os dados para análise.
+Conexão e Carga de Dados
 
----
+Conexão ao banco de dados via MySQL Workbench.
 
-## [cite_start]Diretrizes para Transformação dos Dados [cite: 16]
+População do banco de dados com a base disponível no GitHub.
 
-### Análise e Limpeza Inicial
+Integração e importação dos dados para o Power BI.
 
-* [cite_start]**Verificar Cabeçalhos e Tipos de Dados:** Realize uma inspeção completa nos cabeçalhos e nos tipos de dados de cada coluna[cite: 17].
-* [cite_start]**Modificar Tipos Monetários:** Altere os valores monetários para o tipo `double preciso` para garantir a exatidão nos cálculos[cite: 18].
-* [cite_start]**Analisar e Tratar Nulos:** Verifique a existência de valores nulos e avalie a necessidade de removê-los[cite: 19].
-    * [cite_start]Funcionários com valores nulos na coluna `Super_ssn` podem ser gerentes[cite: 20]. [cite_start]Verifique se existem colaboradores sem um gerente atribuído[cite: 20].
-    * [cite_start]Identifique se há departamentos sem gerentes[cite: 21]. [cite_start]Caso encontre, preencha os dados ausentes[cite: 22].
-* [cite_start]**Verificar Horas de Projeto:** Analise a consistência dos dados referentes ao número de horas dos projetos[cite: 23].
-* [cite_start]**Separar Colunas Complexas:** Divida as colunas que contêm múltiplas informações em colunas distintas[cite: 24].
 
-### Modelagem e Enriquecimento de Dados
+Transformação de Dados no Power BI
 
-* [cite_start]**Mesclar Consultas (Employee e Departament):** Combine as consultas `employee` e `departament` para criar uma tabela de funcionários que inclua o nome de seus respectivos departamentos[cite: 25]. [cite_start]A mesclagem deve ter a tabela `employee` como base[cite: 26].
-* [cite_start]**Unificar Nomes dos Colaboradores:** Mescle as colunas de Nome e Sobrenome para formar uma única coluna com os nomes completos dos colaboradores[cite: 31].
-* [cite_start]**Associar Gerentes a Colaboradores:** Realize a junção dos dados para exibir os nomes dos gerentes ao lado de seus respectivos colaboradores[cite: 28]. [cite_start]Este processo pode ser feito tanto com uma consulta SQL quanto pela mescla de tabelas no Power BI[cite: 29].
-* [cite_start]**Criar Identificador Único de Departamento:** Mescle os nomes dos departamentos com suas localizações[cite: 32]. [cite_start]Essa ação cria uma combinação única que auxiliará na futura criação de um modelo estrela[cite: 32, 33].
+Análise da base de dados para identificar problemas e oportunidades de transformação.
 
-> **Observação sobre Mesclar vs. Atribuir**
-> [cite_start]A operação de **mesclar** foi utilizada porque o objetivo era enriquecer uma tabela com informações (colunas) de outra[cite: 35]. [cite_start]As tabelas possuem estruturas e propósitos diferentes[cite: 35]. [cite_start]A operação de **atribuir** (acrescentar) não seria adequada, pois ela empilha os dados (linhas) de uma tabela embaixo da outra[cite: 35].
+Aplicação de uma série de transformações para limpar, modelar e enriquecer os dados para análise.
 
-### Agrupamento e Finalização
+Diretrizes para a Transformação dos Dados
+A seguir estão os passos recomendados para a etapa de tratamento e modelagem dos dados no Power BI.
 
-* [cite_start]**Agrupar Dados por Gerente:** Agrupe os dados para quantificar quantos colaboradores existem por gerente[cite: 36].
-* [cite_start]**Eliminar Colunas Desnecessárias:** Remova as colunas que não serão utilizadas no relatório final de cada uma das tabelas[cite: 27, 37].
+Análise e Limpeza Inicial
+Validação de Cabeçalhos e Tipos de Dados
+
+Inspecione todas as colunas para garantir que os cabeçalhos e os tipos de dados estejam corretos.
+
+Ajuste de Valores Monetários
+
+Converta todas as colunas que representam valores monetários para o tipo de dado 
+
+double preciso para garantir a exatidão nos cálculos.
+
+Tratamento de Dados Ausentes (Nulos)
+
+Identifique a presença de valores nulos e defina uma estratégia para tratá-los.
+
+Investigue os funcionários com valores nulos na coluna 
+
+Super_ssn, pois podem indicar cargos de gerência.
+
+Verifique se algum departamento está sem gerente e, se necessário, preencha a informação.
+
+Estruturação e Enriquecimento de Dados
+Mesclagem de Consultas: Colaboradores e Departamentos
+
+Combine as tabelas 
+
+employee e departament para associar cada colaborador ao seu respectivo departamento. A mescla deve ter a tabela 
+
+employee como base.
+
+Unificação de Nomes dos Colaboradores
+
+Mescle as colunas de nome e sobrenome para formar uma única coluna com os nomes completos dos colaboradores.
+
+Associação de Gerentes a Colaboradores
+
+Realize uma junção para exibir os nomes dos gerentes ao lado de seus respectivos colaboradores, seja via SQL ou mescla no Power BI.
+
+Criação de Chave Única: Departamento-Localização
+
+Combine as informações de nome do departamento e sua localização para criar um identificador único, auxiliando na futura criação de um modelo estrela.
+
+Nota sobre a Escolha da Operação: Mesclar vs. Atribuir
+A operação de 
+
+Mesclar é utilizada neste projeto para adicionar novas colunas a uma tabela a partir de outra. As tabelas têm estruturas e propósitos diferentes. A operação 
+
+Atribuir (Acrescentar), por outro lado, é usada para empilhar linhas de tabelas com a mesma estrutura.
+
+Agrupamento e Finalização
+Contagem de Colaboradores por Gerente
+
+Utilize a funcionalidade de agrupamento para saber quantos colaboradores existem por gerente.
+
+Otimização do Modelo
+
+Remova as colunas desnecessárias que não serão usadas no relatório final para melhorar a performance.
+
+Agrupamento e Finalização
+Contagem de Colaboradores por Gerente
+
+Utilize a funcionalidade de agrupamento para saber quantos colaboradores existem por gerente.
+
+Otimização do Modelo
+
+Remova as colunas desnecessárias que não serão usadas no relatório final para melhorar a performance.
